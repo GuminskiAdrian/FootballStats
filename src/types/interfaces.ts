@@ -11,8 +11,8 @@ export interface Team {
   name: string;
   shortName: string;
   tla: string;
-  crest: string;
-  address: string;
+  crest: string | null;
+  address: string | null;
   website: string | null;
   founded: number | null;
   clubColors: string | null;
@@ -46,10 +46,10 @@ export interface TableRow {
     goalDifference: number;
 }
 
-export interface Standign {
+export interface Standing {
     table: TableRow[];
 }
 
 export interface StandingsResponse {
-    standings: Standign[];
+    standings: Standing[];
 }
