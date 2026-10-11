@@ -47,7 +47,7 @@ function toAPIError(error: unknown): ApiError {
         return new ApiError('Resource not found', status, null);
     }
 
-    return new ApiError('Server error (${status})', status, null);
+    return new ApiError(`Server error (${status})`, status, null);
 }
 
 export async function get<T>(path: string, signal?: AbortSignal): Promise<T> {
