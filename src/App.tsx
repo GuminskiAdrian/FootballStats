@@ -1,3 +1,14 @@
+import Leaguetable from "./components/LeagueTable";
+import { DEFAULT_SEASON, LEAGUES } from "./config";
+
 export default function App() {
-  return <h1>FootballStats</h1>;
+  const league = LEAGUES[0];
+
+  return (
+    <main>
+      <h1>Football Stats</h1>
+      <h2>{league.name}</h2>
+      <Leaguetable leagueCode={league.code} season={DEFAULT_SEASON} />
+    </main>
+  )
 }
