@@ -1,4 +1,5 @@
 import Leaguetable from "./components/LeagueTable";
+import TeamGrid from "./components/TeamGrid";
 import { DEFAULT_SEASON, LEAGUES } from "./config";
 
 export default function App() {
@@ -8,7 +9,17 @@ export default function App() {
     <main>
       <h1>Football Stats</h1>
       <h2>{league.name}</h2>
-      <Leaguetable leagueCode={league.code} season={DEFAULT_SEASON} />
+
+      <section>
+        <h3>Standings</h3>
+        <Leaguetable leagueCode={league.code} season={DEFAULT_SEASON} />
+      </section>
+      
+      <section>
+        <h3>Teams</h3>
+        <TeamGrid leagueCode={league.code} season={DEFAULT_SEASON} />
+      </section>
+
     </main>
-  )
+  );
 }
