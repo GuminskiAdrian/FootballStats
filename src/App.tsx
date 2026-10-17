@@ -1,24 +1,89 @@
+import { useState } from "react";
+import "./App.css";
 import Leaguetable from "./components/LeagueTable";
-import TeamGrid from "./components/TeamGrid";
-import { DEFAULT_SEASON, LEAGUES } from "./config";
+import TeamDetails from "./components/TeamDetails";
+import { DEFAULT_SEASON, LEAGUES, SEASONS } from "./config";
+import { formatSeason } from "./utils/formatSeason";
 
 export default function App() {
-  const league = LEAGUES[0];
+  const [leagueCode, setLeagueCode] = useState<string>(LEAGUES[0].code);
+  const [season, setSeason] = useState<string>(DEFAULT_SEASON);
+  const [selectedTeamId, setSelectedTeamId] = useState<number | null>(null);
+
+  const league = LEAGUES.find((item) => item.code === leagueCode) ?? LEAGUES[0];
+
+  function handleLeagueChange(newLeagueCode: string) {
+    setLeagueCode(newLeagueCode);
+    setSelectedTeamId(null);
+  }
+
+  function handleSeasonChange(newSeason: string) {
+    setSeason(newSeason);
+    setSelectedTeamId(null);
+  }
 
   return (
     <main>
       <h1>Football Stats</h1>
-      <h2>{league.name}</h2>
+      <div className="filters">
+        <div>
+          <label htmlFor="league-select">League</label>{" "}
+          <select
+            id="league-select"
+            value={league.code}
+            onChange={(event) => handleLeagueChange(event.target.value)}
+          >
+            {LEAGUES.map((item) => (
+              <option key={item.code} value={item.code}>
+                {item.name}
+              </option>
+            ))}
+          </select>
+        </div>
+        <div>
+          <label htmlFor="season-select">Season</label>{" "}
+          <select
+            id="season-select"
+            value={season}
+            onChange={(event) => handleSeasonChange(event.target.value)}
+          >
+            {SEASONS.map((item) => (
+              <option key={item} value={item}>
+                {formatSeason(item)}
+              </option>
+            ))}
+          </select>
+        </div>
+      </div>
 
-      <section>
-        <h3>Standings</h3>
-        <Leaguetable leagueCode={league.code} season={DEFAULT_SEASON} />
-      </section>
+      <h2>
+        {league.name}, {formatSeason(season)}
+      </h2>
 
-      <section>
-        <h3>Teams</h3>
-        <TeamGrid leagueCode={league.code} season={DEFAULT_SEASON} />
-      </section>
+      <div className="layout">
+        <section>
+          <h3>Standings</h3>
+          <Leaguetable
+            key={league.code}
+            leagueCode={league.code}
+            season={season}
+            selectedTeamId={selectedTeamId}
+            onSelectTeam={setSelectedTeamId}
+          />
+        </section>
+
+        <aside>
+          {selectedTeamId === null ? (
+            <p>Select a tteam in the table to see the squad.</p>
+          ) : (
+            <TeamDetails
+              leagueCode={league.code}
+              season={season}
+              teamId={selectedTeamId}
+            />
+          )}
+        </aside>
+      </div>
     </main>
   );
 }

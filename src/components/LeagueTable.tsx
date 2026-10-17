@@ -1,14 +1,22 @@
 import { getStandings } from "../api/endpoints";
 import { useFetch } from "../hooks/useFetch";
+import { formatSeason } from "../utils/formatSeason";
 import ErrorMessage from "./ErrorMessage";
 import Loader from "./Loader";
 
 interface LeagueTableProps {
   leagueCode: string;
   season: string;
+  selectedTeamId: number | null;
+  onSelectTeam: (teamId: number) => void;
 }
 
-export default function LeagueTable({ leagueCode, season }: LeagueTableProps) {
+export default function LeagueTable({
+  leagueCode,
+  season,
+  selectedTeamId,
+  onSelectTeam,
+}: LeagueTableProps) {
   const { data, loading, error } = useFetch(
     `standings:${leagueCode}:${season}`,
     () => getStandings(leagueCode, season),
@@ -28,7 +36,7 @@ export default function LeagueTable({ leagueCode, season }: LeagueTableProps) {
 
   return (
     <table>
-      <caption>Standings, season {season}</caption>
+      <caption>Standings, season {formatSeason(season)}</caption>
       <thead>
         <tr>
           <th scope="col">Position</th>
@@ -65,15 +73,21 @@ export default function LeagueTable({ leagueCode, season }: LeagueTableProps) {
           <tr key={row.team.id}>
             <td>{row.position}</td>
             <td>
-              {row.team.crest !== null && (
-                <img
-                  src={row.team.crest}
-                  alt={`${row.team.name} crest`}
-                  width={20}
-                  height={20}
-                />
-              )}{" "}
-              {row.team.shortName}
+              <button
+                type="button"
+                onClick={() => onSelectTeam(row.team.id)}
+                aria-pressed={row.team.id === selectedTeamId}
+              >
+                {row.team.crest !== null && (
+                  <img
+                    src={row.team.crest}
+                    alt={`${row.team.name} crest`}
+                    width={20}
+                    height={20}
+                  />
+                )}{" "}
+                {row.team.shortName}
+              </button>
             </td>
             <td>{row.playedGames}</td>
             <td>{row.won}</td>

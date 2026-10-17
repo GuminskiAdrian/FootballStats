@@ -13,4 +13,5 @@ export const LEAGUES: League[] = [
   { code: "PD", name: "La Liga" },
 ];
 
+export const SEASONS: string[] = ["2026", "2025", "2024", "2023"];
 export const DEFAULT_SEASON = "2026";
