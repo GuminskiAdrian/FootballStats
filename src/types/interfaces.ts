@@ -21,35 +21,35 @@ export interface Team {
 }
 
 export interface TeamsResponse {
-    teams: Team[];
+  teams: Team[];
 }
 
 export interface StandingTeam {
-    id: number;
-    name: string;
-    shortName: string;
-    tla: string;
-    crest: string | null;
+  id: number;
+  name: string;
+  shortName: string;
+  tla: string;
+  crest: string | null;
 }
 
 export interface TableRow {
-    position: number;
-    team: StandingTeam;
-    playedGames: number;
-    form: string | null;
-    won: number;
-    draw: number;
-    lost: number;
-    points: number;
-    goalsFor: number;
-    goalsAgainst: number;
-    goalDifference: number;
+  position: number;
+  team: StandingTeam;
+  playedGames: number;
+  form: string | null;
+  won: number;
+  draw: number;
+  lost: number;
+  points: number;
+  goalsFor: number;
+  goalsAgainst: number;
+  goalDifference: number;
 }
 
 export interface Standing {
-    table: TableRow[];
+  table: TableRow[];
 }
 
 export interface StandingsResponse {
-    standings: Standing[];
+  standings: Standing[];
 }

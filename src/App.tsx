@@ -14,12 +14,11 @@ export default function App() {
         <h3>Standings</h3>
         <Leaguetable leagueCode={league.code} season={DEFAULT_SEASON} />
       </section>
-      
+
       <section>
         <h3>Teams</h3>
         <TeamGrid leagueCode={league.code} season={DEFAULT_SEASON} />
       </section>
-
     </main>
   );
 }
