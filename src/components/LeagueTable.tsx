@@ -8,7 +8,7 @@ interface LeagueTableProps {
   leagueCode: string;
   season: string;
   selectedTeamId: number | null;
-  onSelectTeam: (teamId: number) => void;
+  onSelectTeam: (teamId: number | null) => void;
 }
 
 export default function LeagueTable({
@@ -75,7 +75,13 @@ export default function LeagueTable({
             <td>
               <button
                 type="button"
-                onClick={() => onSelectTeam(row.team.id)}
+                onClick={() => {
+                  if (row.team.id === selectedTeamId) {
+                    onSelectTeam(null);
+                  } else {
+                    onSelectTeam(row.team.id);
+                  }
+                }}
                 aria-pressed={row.team.id === selectedTeamId}
               >
                 {row.team.crest !== null && (
