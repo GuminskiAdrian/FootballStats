@@ -1,8 +1,11 @@
 import type {
+  Match,
+  MatchesResponse,
   StandingsResponse,
   TableRow,
   Team,
   TeamsResponse,
+  TeamWithCoach,
 } from "../types/interfaces";
 import { get } from "./client";
 
@@ -28,4 +31,24 @@ export async function getTeams(
     signal,
   );
   return data.teams ?? [];
+}
+
+export async function getTeam(
+  teamId: number,
+  signal?: AbortSignal,
+): Promise<TeamWithCoach> {
+  return get<TeamWithCoach>(`/teams/${teamId}`, signal);
+}
+
+export async function getTeamMatches(
+  teamId: number,
+  leagueCode: string,
+  season: string,
+  signal?: AbortSignal,
+): Promise<Match[]> {
+  const data = await get<MatchesResponse>(
+    `/teams/${teamId}/matches?season=${season}&competitions=${leagueCode}`,
+    signal,
+  );
+  return data.matches ?? [];
 }

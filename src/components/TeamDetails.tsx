@@ -4,6 +4,8 @@ import type { SquadMember } from "../types/interfaces";
 import ErrorMessage from "./ErrorMessage";
 import Loader from "./Loader";
 import PlayerCard from "./PlayerCard";
+import RecentResults from "./RecentResults";
+import TeamCoach from "./TeamCoach";
 
 interface TeamDetailsProps {
   leagueCode: string;
@@ -68,6 +70,9 @@ export default function TeamDetails({
         {team.name}
       </h3>
       <p>Stadium: {team.venue ?? "unknown"}</p>
+      <TeamCoach teamId={team.id} />
+      <RecentResults teamId={team.id} leagueCode={leagueCode} season={season} />
+      <h4>Squad</h4>
       {team.squad.length === 0 ? (
         <p>No squad data available.</p>
       ) : (

@@ -53,3 +53,44 @@ export interface Standing {
 export interface StandingsResponse {
   standings: Standing[];
 }
+
+export interface Coach {
+  id: number | null;
+  name: string | null;
+  nationality: string | null;
+  dateOfBirth: string | null;
+}
+
+export interface TeamWithCoach extends Team {
+  coach: Coach | null;
+}
+
+export interface MatchTeam {
+  id: number;
+  name: string | null;
+  shortName: string | null;
+  background: string | null;
+  crest: string | null;
+}
+
+export interface MatchScore {
+  winner: string | null;
+  fullTime: {
+    home: number | null;
+    away: number | null;
+  };
+}
+
+export interface Match {
+  id: number;
+  utcDate: string;
+  status: string;
+  matchday: number | null;
+  homeTeam: MatchTeam;
+  awayTeam: MatchTeam;
+  score: MatchScore;
+}
+
+export interface MatchesResponse {
+  matches: Match[];
+}

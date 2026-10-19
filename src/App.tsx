@@ -74,7 +74,7 @@ export default function App() {
 
         <aside>
           {selectedTeamId === null ? (
-            <p>Select a tteam in the table to see the squad.</p>
+            <p>Select a team in the table to see the squad.</p>
           ) : (
             <TeamDetails
               leagueCode={league.code}
