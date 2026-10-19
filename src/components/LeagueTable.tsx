@@ -3,6 +3,7 @@ import { useFetch } from "../hooks/useFetch";
 import { formatSeason } from "../utils/formatSeason";
 import ErrorMessage from "./ErrorMessage";
 import Loader from "./Loader";
+import "./LeagueTable.module.css";
 
 interface LeagueTableProps {
   leagueCode: string;
@@ -85,12 +86,7 @@ export default function LeagueTable({
                 aria-pressed={row.team.id === selectedTeamId}
               >
                 {row.team.crest !== null && (
-                  <img
-                    src={row.team.crest}
-                    alt={`${row.team.name} crest`}
-                    width={20}
-                    height={20}
-                  />
+                  <img src={row.team.crest} alt={`${row.team.name} crest`} />
                 )}{" "}
                 {row.team.shortName}
               </button>
