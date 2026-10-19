@@ -3,7 +3,7 @@ import { useFetch } from "../hooks/useFetch";
 import { formatSeason } from "../utils/formatSeason";
 import ErrorMessage from "./ErrorMessage";
 import Loader from "./Loader";
-import "./LeagueTable.module.css";
+import styles from "./LeagueTable.module.css";
 
 interface LeagueTableProps {
   leagueCode: string;
@@ -36,7 +36,7 @@ export default function LeagueTable({
   }
 
   return (
-    <table>
+    <table className={styles.leagueTable}>
       <caption>Standings, season {formatSeason(season)}</caption>
       <thead>
         <tr>
@@ -76,13 +76,11 @@ export default function LeagueTable({
             <td>
               <button
                 type="button"
-                onClick={() => {
-                  if (row.team.id === selectedTeamId) {
-                    onSelectTeam(null);
-                  } else {
-                    onSelectTeam(row.team.id);
-                  }
-                }}
+                onClick={() =>
+                  onSelectTeam(
+                    row.team.id === selectedTeamId ? null : row.team.id,
+                  )
+                }
                 aria-pressed={row.team.id === selectedTeamId}
               >
                 {row.team.crest !== null && (

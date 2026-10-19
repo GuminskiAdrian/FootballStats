@@ -4,6 +4,8 @@ import Leaguetable from "./components/LeagueTable";
 import TeamDetails from "./components/TeamDetails";
 import { DEFAULT_SEASON, LEAGUES, SEASONS } from "./config";
 import { formatSeason } from "./utils/formatSeason";
+import TeamRankings from "./components/TeamRankings";
+import Topscorers from "./components/TopScorers";
 
 export default function App() {
   const [leagueCode, setLeagueCode] = useState<string>(LEAGUES[0].code);
@@ -74,7 +76,10 @@ export default function App() {
 
         <aside>
           {selectedTeamId === null ? (
-            <p>Select a team in the table to see the squad.</p>
+            <>
+              <Topscorers leagueCode={league.code} season={season} />
+              <TeamRankings leagueCode={league.code} season={season} />
+            </>
           ) : (
             <TeamDetails
               leagueCode={league.code}

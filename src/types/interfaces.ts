@@ -94,3 +94,32 @@ export interface Match {
 export interface MatchesResponse {
   matches: Match[];
 }
+
+export interface ScorerPlayer {
+  id: number;
+  name: string;
+  nationality: string | null;
+  section: string | null;
+  position: string | null;
+}
+
+export interface ScorerTeam {
+  id: number;
+  name: string;
+  shortName: string;
+  background: string;
+  crest: string | null;
+}
+
+export interface Scorer {
+  player: ScorerPlayer;
+  team: ScorerTeam;
+  playedMatches: number;
+  goals: number;
+  assists: number | null;
+  penalties: number | null;
+}
+
+export interface ScorersResponse {
+  scorers: Scorer[];
+}

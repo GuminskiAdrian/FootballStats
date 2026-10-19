@@ -1,6 +1,8 @@
 import type {
   Match,
   MatchesResponse,
+  Scorer,
+  ScorersResponse,
   StandingsResponse,
   TableRow,
   Team,
@@ -51,4 +53,17 @@ export async function getTeamMatches(
     signal,
   );
   return data.matches ?? [];
+}
+
+export async function getScorers(
+  leagueCode: string,
+  season: string,
+  limit: number,
+  signal?: AbortSignal,
+): Promise<Scorer[]> {
+  const data = await get<ScorersResponse>(
+    `/competitions/${leagueCode}/scorers?season=${season}&limit=${limit}`,
+    signal,
+  );
+  return data.scorers ?? [];
 }
