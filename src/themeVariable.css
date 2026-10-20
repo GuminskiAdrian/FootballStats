@@ -1,0 +1,37 @@
+:root {
+  --bg-main: #0f1117;
+  --bg-card: #181b23;
+  --bg-hover: #222734;
+  --text-main: #f3f4f6;
+  --text-second: #9ca3af;
+  --border-color: #2a2f3d;
+
+  --form-w: #10b981;
+  --form-d: #6b7280;
+  --form-l: #ef4444;
+}
+
+[data-league="pl"] {
+  --league-main: #38003c;
+  --league-second: #00ff85;
+}
+
+[data-league="laLiga"] {
+  --league-main: #1e1015;
+  --league-second: #ff3355;
+}
+
+[data-league="bundesliga"] {
+  --league-main: #210d0e;
+  --league-second: #d20515;
+}
+
+[data-league="ligue1"] {
+  --league-main: #091c3e;
+  --league-second: #dae91e;
+}
+
+[data-league="serieA"] {
+  --league-main: #020b1a;
+  --league-second: #00f0ff;
+}

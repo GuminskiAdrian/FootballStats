@@ -97,7 +97,20 @@ export default function LeagueTable({
             <td>{row.goalsAgainst}</td>
             <td>{row.goalDifference}</td>
             <td>{row.points}</td>
-            <td>{row.form !== null ? row.form.split(",").join(" ") : "-"}</td>
+            {/* <td>{row.form !== null ? row.form.split(",").join(" ") : "-"}</td> */}
+            <td>
+              {row.form !== null
+                ? row.form
+                    .split(",")
+                    .join(" ")
+                    .split("")
+                    .map((result, i) => (
+                      <span key={i} className={styles[`form-${result}`]}>
+                        {result}
+                      </span>
+                    ))
+                : "-"}
+            </td>
           </tr>
         ))}
       </tbody>

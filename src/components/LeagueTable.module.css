@@ -1,3 +1,5 @@
+@import url(../themeVariable.css);
+
 .leagueTable {
   border-collapse: collapse;
   width: 100%;
@@ -57,4 +59,16 @@
 
 .leagueTable tbody tr td button[aria-pressed="true"] {
   font-weight: 600;
+}
+
+.leagueTable tbody tr td .form-W {
+  color: var(--form-w);
+}
+
+.leagueTable tbody tr td .form-D {
+  color: var(--form-d);
+}
+
+.leagueTable tbody tr td .form-L {
+  color: var(--form-l);
 }

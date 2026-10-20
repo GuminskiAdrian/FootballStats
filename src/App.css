@@ -1,3 +1,11 @@
+@import url("./themeVariable.css");
+
+* {
+  background-color: var(--bg-main);
+  color: var(--text-main);
+  border-color: var(--border-color);
+}
+
 .filters {
   display: flex;
   flex-wrap: wrap;
