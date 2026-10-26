@@ -2,6 +2,7 @@ import { getScorers } from "../api/endpoints";
 import { useFetch } from "../hooks/useFetch";
 import ErrorMessage from "./ErrorMessage";
 import Loader from "./Loader";
+import styles from "./Stats.module.css";
 
 interface TopScorersProps {
   leagueCode: string;
@@ -27,14 +28,16 @@ export default function TopScorers({ leagueCode, season }: TopScorersProps) {
   }
 
   return (
-    <section aria-labelledby="top-scorers-heading">
-      <h3 id="top-scorers-heading">Top scorers</h3>
+    <section aria-labelledby="top-scorers-heading" className={styles.stats}>
+      <h4 id="top-scorers-heading">Top scorers</h4>
       <ol>
         {data.map((scorer) => (
           <li key={scorer.player.id}>
-            {scorer.player.name} ({scorer.team.shortName}) - {scorer.goals}{" "}
-            goals
-            {scorer.assists !== null && `, ${scorer.assists} assists`}
+            <div>
+              <span className={styles.player}>{scorer.player.name} </span>
+              <span className={styles.teamShort}>{scorer.team.shortName}</span>
+            </div>
+            <span className={styles.attribute}>{scorer.goals} </span>
           </li>
         ))}
       </ol>

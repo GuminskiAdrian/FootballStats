@@ -3,6 +3,7 @@ import { useFetch } from "../hooks/useFetch";
 import { getBestAttacks, getBestDefence } from "../utils/standingsRankings";
 import ErrorMessage from "./ErrorMessage";
 import Loader from "./Loader";
+import styles from "./Stats.module.css";
 
 interface TeamRankingsProps {
   leagueCode: string;
@@ -31,26 +32,32 @@ export default function TeamRankings({
   }
 
   return (
-    <section aria-labelledby="team-rankings-heading">
-      <h3 id="team-rankings-heading">Team rankings</h3>
-
-      <h4>Best attack</h4>
-      <ol>
-        {getBestAttacks(data, 3).map((row) => (
-          <li key={row.team.id}>
-            {row.team.shortName} ({row.goalsFor} goals scored)
-          </li>
-        ))}
-      </ol>
-
-      <h4>Best defence</h4>
-      <ol>
-        {getBestDefence(data, 3).map((row) => (
-          <li key={row.team.id}>
-            {row.team.shortName} ({row.goalsAgainst} goals conceded)
-          </li>
-        ))}
-      </ol>
+    <section
+      aria-labelledby="team-rankings-heading"
+      className={styles.teamRankings}
+    >
+      <div className={styles.stats}>
+        <h4>Most team goals</h4>
+        <ol>
+          {getBestAttacks(data, 3).map((row) => (
+            <li key={row.team.id}>
+              <span className={styles.team}>{row.team.shortName} </span>
+              <span className={styles.attribute}>{row.goalsFor}</span>
+            </li>
+          ))}
+        </ol>
+      </div>
+      <div className={styles.stats}>
+        <h4>Most clean sheets</h4>
+        <ol>
+          {getBestDefence(data, 3).map((row) => (
+            <li key={row.team.id}>
+              <span className={styles.team}>{row.team.shortName} </span>
+              <span className={styles.attribute}>{row.goalsAgainst}</span>
+            </li>
+          ))}
+        </ol>
+      </div>
     </section>
   );
 }

@@ -11,7 +11,7 @@
   --form-l: #ef4444;
 }
 
-[data-league="pl"] {
+[data-league="premierLeague"] {
   --league-main: #38003c;
   --league-second: #00ff85;
 }

@@ -1,0 +1,58 @@
+@import url("../themeVariable.css");
+
+.stats {
+  border-collapse: collapse;
+  background-color: var(--bg-card);
+  border-radius: 1rem;
+  padding: 1rem;
+}
+
+.stats ol {
+  list-style-position: inside;
+  list-style-type: none;
+}
+
+.stats li,
+.stats h4 {
+  border-bottom: 0.05rem solid var(--border-color);
+  padding-bottom: 0.5rem;
+}
+
+.stats h4 {
+  font-size: 1.25rem;
+  font-weight: 200;
+  color: var(--text-second);
+}
+
+.stats li {
+  margin-top: 0.5rem;
+  display: flex;
+  align-items: first baseline;
+  justify-content: space-between;
+}
+
+.stats li:last-child {
+  border-bottom: none;
+}
+
+.stats .player,
+.stats .team {
+  font-size: 1.25rem;
+  font-weight: 600;
+}
+
+.stats .teamShort {
+  color: var(--text-second);
+}
+
+.stats .attribute {
+  color: var(--league-second);
+  font-weight: 600;
+  font-size: 1.25rem;
+}
+
+.teamRankings {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 1.25rem;
+}

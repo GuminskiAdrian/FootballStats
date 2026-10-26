@@ -1,25 +1,34 @@
 @import url(../themeVariable.css);
 
 .leagueTable {
-  border-collapse: collapse;
   width: 100%;
   text-align: left;
+  border-collapse: collapse;
 }
 
 .leagueTable caption {
-  font-size: 1.5rem;
-  font-weight: 600;
+  text-align: left;
+  font-size: 1.25rem;
+  font-weight: 400;
+  color: var(--text-second);
+  margin-bottom: 0.5rem;
+}
+
+.leagueTable thead th,
+.leagueTable tbody td {
+  border-bottom: 0.05rem solid var(--border-color);
 }
 
 .leagueTable thead th {
-  font-size: 1.25rem;
   font-weight: 400;
   text-align: center;
   padding-bottom: 0.5rem;
+  color: var(--text-second);
 }
 
 .leagueTable thead th:nth-child(1) {
-  width: 5rem;
+  width: 1.25rem;
+  text-align: left;
 }
 
 .leagueTable thead th:nth-child(2) {
@@ -36,6 +45,15 @@
 
 .leagueTable thead th abbr {
   text-decoration: none;
+}
+
+.leagueTable tbody tr td {
+  padding: 0.5rem;
+}
+
+.leagueTable tbody tr td:nth-child(1),
+.leagueTable tbody tr td:nth-child(n + 3):nth-child(-n + 10) {
+  font-weight: 600;
 }
 
 .leagueTable tbody tr td:nth-child(n + 3) {
@@ -61,14 +79,33 @@
   font-weight: 600;
 }
 
+.leagueTable tbody .form {
+  vertical-align: middle;
+}
+
+.leagueTable tbody .formItems {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.leagueTable tbody tr td .form-W,
+.leagueTable tbody tr td .form-D,
+.leagueTable tbody tr td .form-L {
+  width: 17%;
+  border-radius: 0.25rem;
+  color: var(--bg-main);
+  font-weight: 400;
+}
+
 .leagueTable tbody tr td .form-W {
-  color: var(--form-w);
+  background-color: var(--form-w);
 }
 
 .leagueTable tbody tr td .form-D {
-  color: var(--form-d);
+  background-color: var(--form-d);
 }
 
 .leagueTable tbody tr td .form-L {
-  color: var(--form-l);
+  background-color: var(--form-l);
 }

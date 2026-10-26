@@ -37,10 +37,10 @@ export default function LeagueTable({
 
   return (
     <table className={styles.leagueTable}>
-      <caption>Standings, season {formatSeason(season)}</caption>
+      <caption>{formatSeason(season)}</caption>
       <thead>
         <tr>
-          <th scope="col">Position</th>
+          <th scope="col">#</th>
           <th scope="col">Team</th>
           <th scope="col">
             <abbr title="Played">P</abbr>
@@ -97,19 +97,20 @@ export default function LeagueTable({
             <td>{row.goalsAgainst}</td>
             <td>{row.goalDifference}</td>
             <td>{row.points}</td>
-            {/* <td>{row.form !== null ? row.form.split(",").join(" ") : "-"}</td> */}
-            <td>
-              {row.form !== null
-                ? row.form
-                    .split(",")
-                    .join(" ")
-                    .split("")
-                    .map((result, i) => (
-                      <span key={i} className={styles[`form-${result}`]}>
-                        {result}
-                      </span>
-                    ))
-                : "-"}
+            <td className={styles.form}>
+              <div className={styles.formItems}>
+                {row.form !== null
+                  ? row.form
+                      .split(",")
+                      .join(" ")
+                      .split("")
+                      .map((result, i) => (
+                        <span key={i} className={styles[`form-${result}`]}>
+                          {result}
+                        </span>
+                      ))
+                  : "-"}
+              </div>
             </td>
           </tr>
         ))}
