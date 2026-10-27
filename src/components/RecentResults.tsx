@@ -3,6 +3,7 @@ import { useFetch } from "../hooks/useFetch";
 import { getRecentResults } from "../utils/matchResult";
 import ErrorMessage from "./ErrorMessage";
 import Loader from "./Loader";
+import styles from "./RecentResults.module.css";
 
 interface RecentResultsProps {
   teamId: number;
@@ -35,20 +36,23 @@ export default function RecentResults({
   }
 
   return (
-    <section aria-labelledby="recent-results-heading">
+    <section
+      aria-labelledby="recent-results-heading"
+      className={styles.recentResults}
+    >
       <h4 id="recent-results-heading">Recent results</h4>
       <ul>
         {results.map((result) => (
           <li key={result.matchId}>
-            {new Date(result.date).toLocaleDateString("en-GB")}
-            {" · "}
-            {result.isHome ? "H" : "A"}
-            {" · "}
+            <span>{new Date(result.date).toLocaleDateString("en-GB")}</span>
+            <span>{result.isHome ? "H" : "A"}</span>
             {result.opponent.shortName ?? result.opponent.name ?? "Unknown"}
-            {" · "}
-            {result.goalsFor}:{result.goalsAgainst}
-            {" · "}
-            {result.outcome}
+            <span>
+              {result.goalsFor}:{result.goalsAgainst}
+            </span>
+            <span className={`${styles.result} ${styles[result.outcome]}`}>
+              {result.outcome}
+            </span>
           </li>
         ))}
       </ul>

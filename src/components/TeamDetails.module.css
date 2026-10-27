@@ -1,0 +1,53 @@
+@import url(../themeVariable.css);
+
+.teamDetails {
+  border-collapse: collapse;
+  background-color: var(--bg-card);
+  border-radius: 1rem;
+  padding: 1rem;
+  display: grid;
+  grid-template-rows: 1fr auto;
+}
+
+.teamDetails .info {
+  display: grid;
+  grid-template-columns: auto 1fr;
+  grid-template-areas:
+    "image name"
+    "image stadium";
+  gap: 0 1rem;
+  align-items: center;
+}
+
+.teamDetails .info img {
+  grid-area: image;
+  width: 7rem;
+  max-width: 100%;
+}
+
+.teamDetails .info h3 {
+  grid-area: name;
+}
+
+.teamDetails .info .stadiumAndCoach {
+  grid-area: stadium;
+}
+
+.teamDetails .info .stadiumAndCoach p {
+  color: var(--text-second);
+}
+
+.teamDetails ul {
+  list-style-position: inside;
+  list-style-type: none;
+}
+
+.teamDetails .squad h4 {
+  color: var(--text-second);
+  font-size: 1.25rem;
+  font-weight: 300;
+}
+
+.teamDetails .squad ul li:last-child {
+  border: none;
+}

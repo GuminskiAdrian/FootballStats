@@ -1,0 +1,20 @@
+@import url(../themeVariable.css);
+
+.player {
+  display: grid;
+  grid-template-columns: 1fr 2fr 1fr 1fr;
+  margin-top: 0.5rem;
+  border-collapse: collapse;
+  border-bottom: 0.05rem solid var(--border-color);
+  padding-block: 0.5rem;
+}
+
+.nationality {
+  justify-self: end;
+  margin-right: 1rem;
+}
+
+.position,
+.age {
+  color: var(--league-second);
+}

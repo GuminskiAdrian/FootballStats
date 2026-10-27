@@ -1,4 +1,5 @@
 import type { SquadMember } from "../types/interfaces";
+import styles from "./PlayerCard.module.css";
 
 interface PlayerCardProps {
   player: SquadMember;
@@ -47,13 +48,17 @@ export default function PlayerCard({ player }: PlayerCardProps) {
   const age = getAge(player.dateOfBirth);
 
   return (
-    <li>
-      <strong>{player.name}</strong>
-      {" - "}
-      {formatPosition(player.position) ?? "Unknown Position"}
-      {" - "}
-      {player.nationality ?? "Unknown Nationality"}
-      {age !== null && ` . ${age} y/o`}
+    <li className={styles.player}>
+      <span className={styles.position}>
+        {formatPosition(player.position) ?? "Unknown Position"}
+      </span>
+      <span className={styles.name}>
+        <strong>{player.name}</strong>
+      </span>
+      <span className={styles.nationality}>
+        {player.nationality ?? "Unknown Nationality"}
+      </span>
+      <span className={styles.age}>{age !== null && `${age} y/o`}</span>
     </li>
   );
 }

@@ -6,6 +6,7 @@ import Loader from "./Loader";
 import PlayerCard from "./PlayerCard";
 import RecentResults from "./RecentResults";
 import TeamCoach from "./TeamCoach";
+import styles from "./TeamDetails.module.css";
 
 interface TeamDetailsProps {
   leagueCode: string;
@@ -62,26 +63,31 @@ export default function TeamDetails({
   }
 
   return (
-    <section aria-labelledby="team-details-heading">
-      <h3 id="team-details-heading">
-        {team.crest !== null && (
-          <img src={team.crest} alt="" width={32} height={32} />
-        )}{" "}
-        {team.name}
-      </h3>
-      <p>Stadium: {team.venue ?? "unknown"}</p>
-      <TeamCoach teamId={team.id} />
+    <section
+      aria-labelledby="team-details-heading"
+      className={styles.teamDetails}
+    >
+      <div className={styles.info}>
+        <img src={team.crest ?? undefined} alt={`${team.name} badge`} />
+        <h3 id="team-details-heading">{team.name}</h3>
+        <div className={styles.stadiumAndCoach}>
+          <p>Stadium: {team.venue ?? "unknown"}</p>
+          <TeamCoach teamId={team.id} />
+        </div>
+      </div>
       <RecentResults teamId={team.id} leagueCode={leagueCode} season={season} />
-      <h4>Squad</h4>
-      {team.squad.length === 0 ? (
-        <p>No squad data available.</p>
-      ) : (
-        <ul>
-          {sortSquad(team.squad).map((player) => (
-            <PlayerCard key={player.id} player={player} />
-          ))}
-        </ul>
-      )}
+      <div className={styles.squad}>
+        <h4>Squad</h4>
+        {team.squad.length === 0 ? (
+          <p>No squad data available.</p>
+        ) : (
+          <ul>
+            {sortSquad(team.squad).map((player) => (
+              <PlayerCard key={player.id} player={player} />
+            ))}
+          </ul>
+        )}
+      </div>
     </section>
   );
 }

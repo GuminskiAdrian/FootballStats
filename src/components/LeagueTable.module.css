@@ -104,6 +104,7 @@
 
 .leagueTable tbody tr td .form-D {
   background-color: var(--form-d);
+  color: var(--text-main);
 }
 
 .leagueTable tbody tr td .form-L {

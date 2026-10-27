@@ -1,0 +1,49 @@
+@import url(../themeVariable.css);
+
+.recentResults h4 {
+  color: var(--text-second);
+  font-size: 1.25rem;
+  font-weight: 300;
+}
+
+.recentResults li {
+  display: grid;
+  grid-template-columns: 1.5fr 0.5fr 2fr 1fr 1fr;
+  margin-bottom: 0.25rem;
+  border-collapse: collapse;
+}
+
+.recentResults h4,
+.recentResults li {
+  border-bottom: 0.05rem solid var(--border-color);
+  padding-block: 0.5rem;
+}
+
+.recentResults li:last-child {
+  border: none;
+}
+
+.recentResults ul li > :nth-child(-n + 2) {
+  color: var(--text-second);
+}
+
+.recentResults .result {
+  width: 40%;
+  border-radius: 0.25rem;
+  color: var(--bg-main);
+  font-weight: 400;
+  text-align: center;
+}
+
+.recentResults .W {
+  background-color: var(--form-w);
+}
+
+.recentResults .D {
+  background-color: var(--form-d);
+  color: var(--text-main);
+}
+
+.recentResults .L {
+  background-color: var(--form-l);
+}
