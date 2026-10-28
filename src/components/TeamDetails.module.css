@@ -1,5 +1,3 @@
-@import url(../themeVariable.css);
-
 .teamDetails {
   border-collapse: collapse;
   background-color: var(--bg-card);
@@ -7,6 +5,7 @@
   padding: 1rem;
   display: grid;
   grid-template-rows: 1fr auto;
+  gap: 1.5rem;
 }
 
 .teamDetails .info {
@@ -21,25 +20,44 @@
 
 .teamDetails .info img {
   grid-area: image;
-  width: 7rem;
+  width: 5rem;
   max-width: 100%;
+  object-fit: contain;
 }
 
 .teamDetails .info h3 {
   grid-area: name;
+  font-size: 1.75rem;
+  align-self: end;
 }
 
 .teamDetails .info .stadiumAndCoach {
   grid-area: stadium;
-}
-
-.teamDetails .info .stadiumAndCoach p {
+  align-self: start;
   color: var(--text-second);
 }
 
 .teamDetails ul {
-  list-style-position: inside;
   list-style-type: none;
+  max-height: 30rem;
+  overflow-y: auto;
+}
+
+.teamDetails ul::-webkit-scrollbar {
+  width: 0.5rem;
+}
+
+.teamDetails ul::-webkit-scrollbar-track {
+  background: transparent;
+}
+
+.teamDetails ul::-webkit-scrollbar-thumb {
+  background: #666;
+  border-radius: 1rem;
+}
+
+.teamDetails ul::-webkit-scrollbar-thumb:hover {
+  background: #999;
 }
 
 .teamDetails .squad h4 {

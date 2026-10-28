@@ -4,6 +4,7 @@ import { getRecentResults } from "../utils/matchResult";
 import ErrorMessage from "./ErrorMessage";
 import Loader from "./Loader";
 import styles from "./RecentResults.module.css";
+import ClubShortNames from "./ClubShortNames";
 
 interface RecentResultsProps {
   teamId: number;
@@ -46,7 +47,17 @@ export default function RecentResults({
           <li key={result.matchId}>
             <span>{new Date(result.date).toLocaleDateString("en-GB")}</span>
             <span>{result.isHome ? "H" : "A"}</span>
-            {result.opponent.shortName ?? result.opponent.name ?? "Unknown"}
+            <ClubShortNames
+              full={
+                result.opponent.shortName ?? result.opponent.name ?? "Unknown"
+              }
+              short={
+                result.opponent.tla ??
+                result.opponent.shortName ??
+                result.opponent.name ??
+                "Unknown"
+              }
+            />
             <span>
               {result.goalsFor}:{result.goalsAgainst}
             </span>

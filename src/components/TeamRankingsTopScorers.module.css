@@ -1,7 +1,4 @@
-@import url("../themeVariable.css");
-
 .stats {
-  border-collapse: collapse;
   background-color: var(--bg-card);
   border-radius: 1rem;
   padding: 1rem;
@@ -13,12 +10,12 @@
 }
 
 .stats li,
-.stats h4 {
+.stats h3 {
   border-bottom: 0.05rem solid var(--border-color);
   padding-bottom: 0.5rem;
 }
 
-.stats h4 {
+.stats h3 {
   font-size: 1.25rem;
   font-weight: 200;
   color: var(--text-second);
@@ -55,4 +52,10 @@
   display: grid;
   grid-template-columns: 1fr 1fr;
   gap: 1.25rem;
+}
+
+@media (max-width: 40rem) {
+  .teamRankings {
+    grid-template-columns: 1fr;
+  }
 }

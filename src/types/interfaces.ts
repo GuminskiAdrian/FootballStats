@@ -69,7 +69,7 @@ export interface MatchTeam {
   id: number;
   name: string | null;
   shortName: string | null;
-  background: string | null;
+  tla: string | null;
   crest: string | null;
 }
 
@@ -107,7 +107,7 @@ export interface ScorerTeam {
   id: number;
   name: string;
   shortName: string;
-  background: string;
+  tla: string;
   crest: string | null;
 }
 

@@ -4,6 +4,7 @@ import { formatSeason } from "../utils/formatSeason";
 import ErrorMessage from "./ErrorMessage";
 import Loader from "./Loader";
 import styles from "./LeagueTable.module.css";
+import ClubShortNames from "./ClubShortNames";
 
 interface LeagueTableProps {
   leagueCode: string;
@@ -86,7 +87,10 @@ export default function LeagueTable({
                 {row.team.crest !== null && (
                   <img src={row.team.crest} alt={`${row.team.name} crest`} />
                 )}{" "}
-                {row.team.shortName}
+                <ClubShortNames
+                  full={row.team.shortName}
+                  short={row.team.tla}
+                />
               </button>
             </td>
             <td>{row.playedGames}</td>

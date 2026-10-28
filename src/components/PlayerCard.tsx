@@ -1,5 +1,6 @@
 import type { SquadMember } from "../types/interfaces";
 import styles from "./PlayerCard.module.css";
+import ClubShortNames from "./ClubShortNames";
 
 interface PlayerCardProps {
   player: SquadMember;
@@ -18,6 +19,21 @@ function formatPosition(position: string | null): string {
   }
 
   return POSITION_LABELS[position] ?? position;
+}
+
+const POSITION_SHORT_LABELS: Record<string, string | undefined> = {
+  Goalkeeper: "GK",
+  Defence: "DEF",
+  Midfield: "MID",
+  Offence: "FWD",
+};
+
+function formatPositionShort(position: string | null): string {
+  if (position === null) {
+    return "N/A";
+  }
+
+  return POSITION_SHORT_LABELS[position] ?? position;
 }
 
 function getAge(dateOfBirth: string | null): number | null {
@@ -50,7 +66,10 @@ export default function PlayerCard({ player }: PlayerCardProps) {
   return (
     <li className={styles.player}>
       <span className={styles.position}>
-        {formatPosition(player.position) ?? "Unknown Position"}
+        <ClubShortNames
+          full={formatPosition(player.position)}
+          short={formatPositionShort(player.position)}
+        />
       </span>
       <span className={styles.name}>
         <strong>{player.name}</strong>

@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useState, useEffect, useRef } from "react";
 import styles from "./App.module.css";
 import Leaguetable from "./components/LeagueTable";
 import TeamDetails from "./components/TeamDetails";
@@ -23,6 +23,16 @@ export default function App() {
     setSeason(newSeason);
     setSelectedTeamId(null);
   }
+
+  const detailsRef = useRef<HTMLElement>(null);
+
+  useEffect(() => {
+    const isNarrow = window.matchMedia("(max-width: 40rem)").matches;
+
+    if (selectedTeamId !== null && isNarrow) {
+      detailsRef.current?.scrollIntoView({ behavior: "smooth" });
+    }
+  }, [selectedTeamId]);
 
   return (
     <main data-league={league.theme}>
@@ -60,7 +70,7 @@ export default function App() {
         </div>
       </div>
 
-      <h2>{league.name}</h2>
+      <h2 className={styles.leagueName}>{league.name}</h2>
 
       <div className={styles.layout}>
         <section>
@@ -73,14 +83,12 @@ export default function App() {
           />
         </section>
 
-        <aside>
+        <aside ref={detailsRef}>
           {selectedTeamId === null ? (
-            <>
-              <div className={styles.statsContainer}>
-                <Topscorers leagueCode={league.code} season={season} />
-                <TeamRankings leagueCode={league.code} season={season} />
-              </div>
-            </>
+            <div className={styles.statsContainer}>
+              <Topscorers leagueCode={league.code} season={season} />
+              <TeamRankings leagueCode={league.code} season={season} />
+            </div>
           ) : (
             <TeamDetails
               leagueCode={league.code}

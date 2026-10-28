@@ -3,7 +3,8 @@ import { useFetch } from "../hooks/useFetch";
 import { getBestAttacks, getBestDefence } from "../utils/standingsRankings";
 import ErrorMessage from "./ErrorMessage";
 import Loader from "./Loader";
-import styles from "./Stats.module.css";
+import styles from "./TeamRankingsTopScorers.module.css";
+import ClubShortNames from "./ClubShortNames";
 
 interface TeamRankingsProps {
   leagueCode: string;
@@ -32,27 +33,34 @@ export default function TeamRankings({
   }
 
   return (
-    <section
-      aria-labelledby="team-rankings-heading"
-      className={styles.teamRankings}
-    >
+    <section aria-label="team-rankings-heading" className={styles.teamRankings}>
       <div className={styles.stats}>
-        <h4>Most team goals</h4>
+        <h3>Most team goals</h3>
         <ol>
           {getBestAttacks(data, 3).map((row) => (
             <li key={row.team.id}>
-              <span className={styles.team}>{row.team.shortName} </span>
+              <span className={styles.team}>
+                <ClubShortNames
+                  full={row.team.shortName}
+                  short={row.team.tla}
+                />{" "}
+              </span>
               <span className={styles.attribute}>{row.goalsFor}</span>
             </li>
           ))}
         </ol>
       </div>
       <div className={styles.stats}>
-        <h4>Most clean sheets</h4>
+        <h3>Fewest goals conceded</h3>
         <ol>
           {getBestDefence(data, 3).map((row) => (
             <li key={row.team.id}>
-              <span className={styles.team}>{row.team.shortName} </span>
+              <span className={styles.team}>
+                <ClubShortNames
+                  full={row.team.shortName}
+                  short={row.team.tla}
+                />{" "}
+              </span>
               <span className={styles.attribute}>{row.goalsAgainst}</span>
             </li>
           ))}

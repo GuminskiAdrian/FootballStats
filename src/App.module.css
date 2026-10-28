@@ -1,42 +1,32 @@
-@import url("./themeVariable.css");
-
-* {
-  margin: 0;
-  padding: 0;
-}
-
-body {
-  background-color: var(--bg-main);
-  color: var(--text-main);
+.header,
+.layout {
+  display: grid;
+  grid-template-columns: 5fr 3fr;
 }
 
 .header {
-  width: 100%;
   height: 5rem;
   background-color: var(--league-main);
-  display: grid;
-  grid-template-columns: 5fr 3fr;
   align-items: center;
 }
 
-.filters {
+.header .filters {
   display: flex;
-  justify-content: center;
+  justify-content: end;
+  margin-right: var(--page-gutter);
   gap: 1rem;
-  margin-right: 4rem;
 }
 
-.filters .filtersLeague,
-.filters .filtersSeason {
+.header .filters .filtersLeague,
+.header .filters .filtersSeason {
   color: var(--text-second);
   display: flex;
-  justify-content: center;
   align-items: center;
   gap: 0.25rem;
 }
 
-.filters .filtersLeague select,
-.filters .filtersSeason select {
+.header .filters .filtersLeague select,
+.header .filters .filtersSeason select {
   background-color: var(--bg-card);
   color: var(--text-main);
   height: 2.25rem;
@@ -45,23 +35,21 @@ body {
   border-color: var(--bg-hover);
 }
 
-h1 {
+.header h1 {
   font-size: 1.25rem;
-  margin-left: 4rem;
+  margin-left: var(--page-gutter);
   font-weight: 700;
 }
 
-h2 {
+.leagueName {
   font-size: 2.5rem;
   margin-top: 1.25rem;
-  margin-left: 4rem;
+  margin-left: var(--page-gutter);
 }
 
 .layout {
-  display: grid;
-  grid-template-columns: 3fr 2fr;
   gap: 2rem;
-  margin-inline: 4rem;
+  margin-inline: var(--page-gutter);
   margin-top: 0.75rem;
 }
 
@@ -69,4 +57,16 @@ h2 {
   display: grid;
   grid-template-columns: 1fr;
   gap: 1.25rem;
+}
+
+@media (max-width: 40rem) {
+  .header,
+  .layout {
+    grid-template-columns: 1fr;
+  }
+
+  .header {
+    height: auto;
+    padding-block: 1rem;
+  }
 }

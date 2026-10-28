@@ -1,0 +1,21 @@
+@import url("./themeVariable.css");
+
+* {
+  margin: 0;
+  padding: 0;
+}
+
+body {
+  background-color: var(--bg-main);
+  color: var(--text-main);
+  font-family:
+    system-ui,
+    -apple-system,
+    "Segoe UI",
+    sans-serif;
+}
+
+button,
+select {
+  font: inherit;
+}

@@ -68,7 +68,9 @@ export default function TeamDetails({
       className={styles.teamDetails}
     >
       <div className={styles.info}>
-        <img src={team.crest ?? undefined} alt={`${team.name} badge`} />
+        {team.crest !== null && (
+          <img src={team.crest} alt={`${team.name} badge`} />
+        )}
         <h3 id="team-details-heading">{team.name}</h3>
         <div className={styles.stadiumAndCoach}>
           <p>Stadium: {team.venue ?? "unknown"}</p>

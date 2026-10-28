@@ -9,6 +9,7 @@
   --form-w: #10b981;
   --form-d: #6b7280;
   --form-l: #ef4444;
+  --page-gutter: 4rem;
 }
 
 [data-league="premierLeague"] {
@@ -34,4 +35,10 @@
 [data-league="serieA"] {
   --league-main: #020b1a;
   --league-second: #00f0ff;
+}
+
+@media (max-width: 40rem) {
+  :root {
+    --page-gutter: 1rem;
+  }
 }
