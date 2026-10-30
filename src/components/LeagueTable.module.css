@@ -83,8 +83,9 @@
 
 .leagueTable tbody .formItems {
   display: flex;
-  justify-content: space-between;
+  justify-content: center;
   align-items: center;
+  gap: 0.25rem;
 }
 
 .leagueTable tbody tr td .form-W,
@@ -111,4 +112,11 @@
 
 .leagueTable tbody tr:hover td {
   background-color: var(--bg-hover);
+}
+
+@media (max-width: 50rem) {
+  .leagueTable th:nth-child(n + 7):nth-child(-n + 9),
+  .leagueTable td:nth-child(n + 7):nth-child(-n + 9) {
+    display: none;
+  }
 }

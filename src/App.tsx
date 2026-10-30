@@ -27,7 +27,7 @@ export default function App() {
   const detailsRef = useRef<HTMLElement>(null);
 
   useEffect(() => {
-    const isNarrow = window.matchMedia("(max-width: 40rem)").matches;
+    const isNarrow = window.matchMedia("(max-width: 80rem)").matches;
 
     if (selectedTeamId !== null && isNarrow) {
       detailsRef.current?.scrollIntoView({ behavior: "smooth" });
@@ -73,7 +73,7 @@ export default function App() {
       <h2 className={styles.leagueName}>{league.name}</h2>
 
       <div className={styles.layout}>
-        <section>
+        <section className={styles.leagueTableSection}>
           <Leaguetable
             key={league.code}
             leagueCode={league.code}

@@ -53,13 +53,21 @@
   margin-top: 0.75rem;
 }
 
+.layout > * {
+  min-width: 0;
+}
+
+.layout .leagueTableSection {
+  overflow-x: auto;
+}
+
 .layout .statsContainer {
   display: grid;
   grid-template-columns: 1fr;
   gap: 1.25rem;
 }
 
-@media (max-width: 40rem) {
+@media (max-width: 80rem) {
   .header,
   .layout {
     grid-template-columns: 1fr;
@@ -68,5 +76,24 @@
   .header {
     height: auto;
     padding-block: 1rem;
+    gap: 0.75rem;
+  }
+
+  .header h1 {
+    margin-inline: var(--page-gutter);
+  }
+
+  .header .filters {
+    margin-inline: var(--page-gutter);
+    justify-content: flex-start;
+    flex-wrap: wrap;
+    gap: 0.75rem;
+  }
+
+  .heder .filters .filtersLeague,
+  .heder .filters .filtersSeason {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 0.25rem;
   }
 }

@@ -33,7 +33,7 @@ export default function TeamRankings({
   }
 
   return (
-    <section aria-label="team-rankings-heading" className={styles.teamRankings}>
+    <section aria-label="team rankings" className={styles.teamRankings}>
       <div className={styles.stats}>
         <h3>Most team goals</h3>
         <ol>

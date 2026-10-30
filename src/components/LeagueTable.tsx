@@ -103,16 +103,12 @@ export default function LeagueTable({
             <td>{row.points}</td>
             <td className={styles.form}>
               <div className={styles.formItems}>
-                {row.form !== null
-                  ? row.form
-                      .split(",")
-                      .join(" ")
-                      .split("")
-                      .map((result, i) => (
-                        <span key={i} className={styles[`form-${result}`]}>
-                          {result}
-                        </span>
-                      ))
+                {row.form
+                  ? row.form.split(",").map((result, i) => (
+                      <span key={i} className={styles[`form-${result}`]}>
+                        {result}
+                      </span>
+                    ))
                   : "-"}
               </div>
             </td>
