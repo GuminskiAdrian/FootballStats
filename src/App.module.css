@@ -90,8 +90,8 @@
     gap: 0.75rem;
   }
 
-  .heder .filters .filtersLeague,
-  .heder .filters .filtersSeason {
+  .header .filters .filtersLeague,
+  .header .filters .filtersSeason {
     flex-direction: column;
     align-items: flex-start;
     gap: 0.25rem;
