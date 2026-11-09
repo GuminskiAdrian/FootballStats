@@ -6,6 +6,7 @@ import { DEFAULT_SEASON, LEAGUES, SEASONS } from "./config";
 import { formatSeason } from "./utils/formatSeason";
 import TeamRankings from "./components/TeamRankings";
 import Topscorers from "./components/TopScorers";
+import LeagueSummary from "./components/LeagueSummary";
 
 export default function App() {
   const [leagueCode, setLeagueCode] = useState<string>(LEAGUES[0].code);
@@ -71,6 +72,7 @@ export default function App() {
       </div>
 
       <h2 className={styles.leagueName}>{league.name}</h2>
+      <LeagueSummary leagueCode={leagueCode} season={season} />
 
       <div className={styles.layout}>
         <section className={styles.leagueTableSection}>

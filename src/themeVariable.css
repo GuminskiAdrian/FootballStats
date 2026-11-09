@@ -13,7 +13,7 @@
 }
 
 [data-league="premierLeague"] {
-  --league-main: #38003c;
+  --league-main: #2e1238;
   --league-second: #00ff85;
 }
 
@@ -24,7 +24,7 @@
 
 [data-league="bundesliga"] {
   --league-main: #210d0e;
-  --league-second: #d20515;
+  --league-second: #ff4d5e;
 }
 
 [data-league="ligue1"] {

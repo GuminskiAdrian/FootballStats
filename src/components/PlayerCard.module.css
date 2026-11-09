@@ -1,6 +1,6 @@
 .player {
   display: grid;
-  grid-template-columns: 1fr 2fr 1fr 1fr;
+  grid-template-columns: 1.5fr 2fr 1fr 1fr;
   margin-top: 0.5rem;
   border-bottom: 0.05rem solid var(--border-color);
   padding-block: 0.5rem;
