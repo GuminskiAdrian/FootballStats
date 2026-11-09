@@ -79,7 +79,7 @@ export default function TeamDetails({
         { label: "Goals for", value: teamRow.goalsFor },
         { label: "Goals against", value: teamRow.goalsAgainst },
         {
-          label: "goal difference",
+          label: "Goal difference",
           value: formatGoalsDifference(teamRow.goalDifference),
         },
       ]
