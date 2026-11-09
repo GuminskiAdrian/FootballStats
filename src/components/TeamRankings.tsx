@@ -32,12 +32,21 @@ export default function TeamRankings({
     return null;
   }
 
+  const attack = getBestAttacks(data, 3);
+  const defence = getBestDefence(data, 3);
+
+  const maxGoals = Math.max(1, ...attack.map((row) => row.goalsFor));
+  const leastConceded = Math.max(
+    1,
+    Math.min(...defence.map((row) => row.goalsAgainst)),
+  );
+
   return (
     <section aria-label="team rankings" className={styles.teamRankings}>
       <div className={styles.stats}>
         <h3>Most team goals</h3>
         <ol>
-          {getBestAttacks(data, 3).map((row) => (
+          {attack.map((row) => (
             <li key={row.team.id}>
               <span className={styles.team}>
                 <ClubShortNames
@@ -46,6 +55,10 @@ export default function TeamRankings({
                 />{" "}
               </span>
               <span className={styles.attribute}>{row.goalsFor}</span>
+              <progress
+                value={row.goalsFor / maxGoals}
+                aria-label="Goals scored realtive to the bst attack"
+              />
             </li>
           ))}
         </ol>
@@ -53,7 +66,7 @@ export default function TeamRankings({
       <div className={styles.stats}>
         <h3>Fewest goals conceded</h3>
         <ol>
-          {getBestDefence(data, 3).map((row) => (
+          {defence.map((row) => (
             <li key={row.team.id}>
               <span className={styles.team}>
                 <ClubShortNames
@@ -62,6 +75,10 @@ export default function TeamRankings({
                 />{" "}
               </span>
               <span className={styles.attribute}>{row.goalsAgainst}</span>
+              <progress
+                value={leastConceded / Math.max(1, row.goalsAgainst)}
+                aria-label="Goals conceded realtive to the best defence"
+              />
             </li>
           ))}
         </ol>
