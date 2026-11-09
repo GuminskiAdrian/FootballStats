@@ -1,4 +1,4 @@
-import { getTeams } from "../api/endpoints";
+import { getStandings, getTeams } from "../api/endpoints";
 import { useFetch } from "../hooks/useFetch";
 import type { SquadMember } from "../types/interfaces";
 import ErrorMessage from "./ErrorMessage";
@@ -38,6 +38,10 @@ function sortSquad(squad: SquadMember[]): SquadMember[] {
   );
 }
 
+function formatGoalsDifference(value: number): string {
+  return value > 0 ? `+${value}` : String(value);
+}
+
 export default function TeamDetails({
   leagueCode,
   season,
@@ -46,6 +50,10 @@ export default function TeamDetails({
   const { data, loading, error } = useFetch(
     `teams:${leagueCode}:${season}`,
     () => getTeams(leagueCode, season),
+  );
+
+  const standings = useFetch(`standings:${leagueCode}:${season}`, () =>
+    getStandings(leagueCode, season),
   );
 
   if (loading) {
@@ -62,6 +70,21 @@ export default function TeamDetails({
     return <p>Team details not available.</p>;
   }
 
+  const teamRow = standings.data?.find((row) => row.team.id === team.id);
+
+  const tiles = teamRow
+    ? [
+        { label: "Position", value: teamRow.position },
+        { label: "Points", value: teamRow.points },
+        { label: "Goals for", value: teamRow.goalsFor },
+        { label: "Goals against", value: teamRow.goalsAgainst },
+        {
+          label: "goal difference",
+          value: formatGoalsDifference(teamRow.goalDifference),
+        },
+      ]
+    : [];
+
   return (
     <section
       aria-labelledby="team-details-heading"
@@ -77,6 +100,16 @@ export default function TeamDetails({
           <TeamCoach teamId={team.id} />
         </div>
       </div>
+      {tiles.length > 0 && (
+        <dl className={styles.statTiles}>
+          {tiles.map((tile) => (
+            <div key={tile.label}>
+              <dt>{tile.label}</dt>
+              <dd>{tile.value}</dd>
+            </div>
+          ))}
+        </dl>
+      )}
       <RecentResults teamId={team.id} leagueCode={leagueCode} season={season} />
       <div className={styles.squad}>
         <h4>Squad</h4>
