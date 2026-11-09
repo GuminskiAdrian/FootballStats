@@ -1,4 +1,4 @@
-import { getScorers } from "../api/endpoints";
+import { getScorers, getStandings } from "../api/endpoints";
 import { useFetch } from "../hooks/useFetch";
 import ErrorMessage from "./ErrorMessage";
 import Loader from "./Loader";
@@ -16,6 +16,10 @@ export default function TopScorers({ leagueCode, season }: TopScorersProps) {
     () => getScorers(leagueCode, season, 10),
   );
 
+  const standings = useFetch(`standings:${leagueCode}:${season}`, () =>
+    getStandings(leagueCode, season),
+  );
+
   if (loading) {
     return <Loader />;
   }
@@ -28,11 +32,27 @@ export default function TopScorers({ leagueCode, season }: TopScorersProps) {
     return <p>No scorers available.</p>;
   }
 
+  const [leader, ...rest] = data;
+  const leaderClubPosition = standings.data?.find(
+    (row) => row.team.id === leader.team.id,
+  )?.position;
+
   return (
     <section aria-labelledby="top-scorers-heading" className={styles.stats}>
       <h3 id="top-scorers-heading">Top scorers</h3>
+      <div>
+        <span className={styles.player}>{leader.player.name} </span>
+        <span className={styles.teamShort}>
+          {leaderClubPosition !== undefined && `#${leaderClubPosition} - `}
+          <ClubShortNames
+            full={leader.team.shortName}
+            short={leader.team.tla}
+          />
+        </span>
+        <span className={styles.attribute}>{leader.goals} </span>
+      </div>
       <ol>
-        {data.map((scorer) => (
+        {rest.map((scorer) => (
           <li key={scorer.player.id}>
             <div>
               <span className={styles.player}>{scorer.player.name} </span>
