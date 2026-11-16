@@ -27,7 +27,7 @@ export const LEAGUES: League[] = [
     name: "Bundesliga",
     theme: "bundesliga",
     emblem: `${CRESTS}/BL1.png`,
-    stripe: ["#d10214", "#ffffff", "#000000"],
+    stripe: ["#7a0912", "#ffffff", "#000000"],
     relegated: 2,
     playoff: 1,
   },

@@ -34,12 +34,11 @@
 }
 
 [data-league="bundesliga"] {
-  --league-main: #d10214;
+  --league-main: #7a0912;
   --league-highlight: #ffffff;
   --league-second: #ff4553;
   --league-third: #f2f2f2;
   --league-on-accent: #ffffff;
-  --league-muted: rgba(255, 255, 255, 0.78);
 }
 
 [data-league="ligue1"] {

@@ -1,7 +1,16 @@
+.panel {
+  padding: 0.5rem 0.5rem 0.75rem;
+  background-color: var(--bg-card);
+  border: 1px solid var(--border-color);
+  border-radius: 1rem;
+}
+
 .leagueTable {
   width: 100%;
   text-align: left;
   border-collapse: collapse;
+  border-collapse: separate;
+  border-spacing: 0;
 }
 
 .leagueTable caption {
@@ -12,20 +21,21 @@
   margin-bottom: 0.5rem;
 }
 
-.leagueTable thead th,
-.leagueTable tbody td {
-  border-bottom: 0.05rem solid var(--border-color);
-}
-
 .leagueTable thead th {
+  height: 2.5rem;
+  padding: 0 0.5rem;
+  font-size: 0.75rem;
   font-weight: 400;
   text-align: center;
-  padding-bottom: 0.5rem;
-  color: var(--text-second);
+  color: var(--text-third);
+}
+
+.leagueTable tbody td {
+  border-top: 1px solid var(--border-color);
 }
 
 .leagueTable thead th:nth-child(1) {
-  width: 1.25rem;
+  width: 2.75rem;
   text-align: left;
 }
 
@@ -43,14 +53,25 @@
 
 .leagueTable thead th abbr {
   text-decoration: none;
+  cursor: help;
 }
 
 .leagueTable tbody tr td {
-  padding: 0.5rem;
+  height: 2.75rem;
+  padding: 0 0.5rem;
+  color: var(--text-second);
 }
 
-.leagueTable tbody tr td:nth-child(1),
-.leagueTable tbody tr td:nth-child(n + 3):nth-child(-n + 10) {
+.leagueTable tbody tr td:nth-child(1) {
+  position: relative;
+  padding-left: 0.75rem;
+  color: var(--text-main);
+  font-weight: 500;
+}
+
+.leagueTable tbody tr td:nth-child(10) {
+  color: var(--text-main);
+  font-size: 0.9375rem;
   font-weight: 600;
 }
 
@@ -59,22 +80,39 @@
 }
 
 .leagueTable tbody tr td button {
-  border: none;
-  background-color: transparent;
-  color: inherit;
-  cursor: pointer;
   display: flex;
   align-items: center;
-  gap: 1rem;
-  font-size: 1rem;
+  gap: 0.75rem;
+  border: none;
+  background-color: transparent;
+  color: var(--text-main);
+  cursor: pointer;
+  font-size: inherit;
+  font-weight: 500;
 }
 
 .leagueTable tbody tr td button img {
-  height: 1.75rem;
+  height: 1.5rem;
+  width: 1.5rem;
+  object-fit: contain;
 }
 
-.leagueTable tbody tr td button[aria-pressed="true"] {
-  font-weight: 600;
+.leagueTable tbody tr:has(button[aria-pressed="true"]) td {
+  background-color: var(--bg-hover);
+  border-top-color: transparent;
+  color: var(--text-main);
+}
+
+.leagueTable tbody tr:has(button[aria-pressed="true"]) + tr td {
+  border-top-color: transparent;
+}
+
+.leagueTable tbody tr td:first-child {
+  border-radius: 0.5rem 0 0 0.5rem;
+}
+
+.leagueTable tbody tr td:last-child {
+  border-radius: 0 0.5rem 0.5rem 0;
 }
 
 .leagueTable tbody .form {
@@ -85,16 +123,21 @@
   display: flex;
   justify-content: center;
   align-items: center;
-  gap: 0.25rem;
+  gap: 3px;
 }
 
 .leagueTable tbody tr td .form-W,
 .leagueTable tbody tr td .form-D,
 .leagueTable tbody tr td .form-L {
-  width: 1rem;
+  width: 1.375rem;
+  height: 1.375rem;
   border-radius: 0.25rem;
   color: var(--bg-main);
-  font-weight: 400;
+  font-family: var(--font-mono);
+  font-size: 0.6875rem;
+  font-weight: 500;
+  line-height: 1.375rem;
+  text-align: center;
 }
 
 .leagueTable tbody tr td .form-W {
@@ -110,13 +153,74 @@
   background-color: var(--form-l);
 }
 
-.leagueTable tbody tr:hover td {
-  background-color: var(--bg-hover);
+@media (hover: hover) and (pointer: fine) {
+  .leagueTable tbody tr:hover td {
+    background-color: rgba(237, 237, 237, 0.03);
+  }
 }
 
-@media (max-width: 50rem) {
-  .leagueTable th:nth-child(n + 7):nth-child(-n + 9),
-  .leagueTable td:nth-child(n + 7):nth-child(-n + 9) {
+.relegation td:first-child::before,
+.playoff td:first-child::before {
+  content: "";
+  position: absolute;
+  left: 2px;
+  top: 0.75rem;
+  bottom: 0.75rem;
+  width: 3px;
+  border-radius: 2px;
+  background-color: var(--form-l);
+}
+
+.playoff td:first-child::before {
+  opacity: 0.45;
+}
+
+.legend {
+  display: flex;
+  gap: 1.25rem;
+  padding: 1rem 0.75rem 0.25rem;
+  color: var(--text-third);
+  font-size: 0.75rem;
+}
+
+.legend span {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5rem;
+}
+
+.legend span::before {
+  content: "";
+  width: 3px;
+  height: 0.75rem;
+  border-radius: 2px;
+  background-color: var(--form-l);
+}
+
+.legend .legendPlayoff::before {
+  opacity: 0.45;
+}
+
+@media (max-width: 47.5rem) {
+  .panel {
+    padding: 0.25rem;
+  }
+
+  .leagueTable th:nth-child(n + 4):nth-child(-n + 8),
+  .leagueTable td:nth-child(n + 4):nth-child(-n + 8) {
     display: none;
+  }
+
+  .leagueTable thead th,
+  .leagueTable tbody tr td {
+    padding-inline: 0.375rem;
+  }
+
+  .leagueTable tbody tr td .form-W,
+  .leagueTable tbody tr td .form-D,
+  .leagueTable tbody tr td .form-L {
+    width: 0.875rem;
+    height: 0.875rem;
+    font-size: 0;
   }
 }
