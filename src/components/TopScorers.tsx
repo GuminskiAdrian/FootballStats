@@ -10,6 +10,22 @@ interface TopScorersProps {
   season: string;
 }
 
+function ordinal(n: number): string {
+  const lastTwo = n % 100;
+  if (lastTwo >= 11 && lastTwo <= 13) return `${n}th`;
+
+  switch (n % 10) {
+    case 1:
+      return `${n}st`;
+    case 2:
+      return `${n}nd`;
+    case 3:
+      return `${n}rd`;
+    default:
+      return `${n}th`;
+  }
+}
+
 export default function TopScorers({ leagueCode, season }: TopScorersProps) {
   const { data, loading, error } = useFetch(
     `scorers:${leagueCode}:${season}`,
@@ -38,32 +54,54 @@ export default function TopScorers({ leagueCode, season }: TopScorersProps) {
   )?.position;
 
   return (
-    <section aria-labelledby="top-scorers-heading" className={styles.stats}>
-      <h3 id="top-scorers-heading">Top scorers</h3>
-      <div>
-        <span className={styles.player}>{leader.player.name} </span>
-        <span className={styles.teamShort}>
-          {leaderClubPosition !== undefined && `#${leaderClubPosition} - `}
-          <ClubShortNames
-            full={leader.team.shortName}
-            short={leader.team.tla}
-          />
-        </span>
-        <span className={styles.attribute}>{leader.goals} </span>
+    <section aria-labelledby="top-scorers-heading" className={styles.card}>
+      <div className={styles.cardHead}>
+        <h3 id="top-scorers-heading">Top scorers</h3>
+        <small>Goals - assists</small>
       </div>
-      <ol>
-        {rest.map((scorer) => (
+
+      <div className={styles.leader}>
+        {leader.team.crest !== null ? (
+          <img src={leader.team.crest} alt="" />
+        ) : (
+          <span />
+        )}
+        <div>
+          <p className={styles.leaderName}>{leader.player.name}</p>
+          <p className={styles.leaderMeta}>
+            <ClubShortNames
+              full={leader.team.shortName}
+              short={leader.team.tla}
+            />
+            {leaderClubPosition !== undefined &&
+              ` - ${ordinal(leaderClubPosition)}  in table`}
+          </p>
+        </div>
+        <p className={styles.leaderGoals}>
+          <strong>{leader.goals}</strong>
+          <span>goals</span>
+        </p>
+      </div>
+
+      <ol className={styles.rank}>
+        {rest.map((scorer, index) => (
           <li key={scorer.player.id}>
-            <div>
-              <span className={styles.player}>{scorer.player.name} </span>
-              <span className={styles.teamShort}>
-                <ClubShortNames
-                  full={scorer.team.shortName}
-                  short={scorer.team.tla}
-                />
-              </span>
-            </div>
-            <span className={styles.attribute}>{scorer.goals} </span>
+            <span className={styles.place}>{index + 2}</span>
+            {scorer.team.crest !== null ? (
+              <img src={scorer.team.crest} alt="" />
+            ) : (
+              <span />
+            )}
+            <span className={styles.name}>
+              {scorer.player.name}
+              <em>
+                <abbr title={scorer.team.name}>{scorer.team.tla}</abbr>
+              </em>
+            </span>
+            <span className={styles.goals}>
+              {scorer.goals}
+              <small>{scorer.assists ?? "-"}</small>
+            </span>
           </li>
         ))}
       </ol>

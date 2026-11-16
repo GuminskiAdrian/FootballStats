@@ -1,61 +1,199 @@
-.stats {
+.card {
+  padding: 1.25rem;
   background-color: var(--bg-card);
+  border: 1px solid var(--border-color);
   border-radius: 1rem;
-  padding: 1rem;
 }
 
-.stats ol {
-  list-style-position: inside;
+.cardHead {
+  display: flex;
+  align-items: baseline;
+  justify-content: space-between;
+  margin-bottom: 0.75rem;
+}
+
+.cardHead h3 {
+  font-size: 0.9375rem;
+  font-weight: 500;
+}
+
+.cardHead small {
+  color: var(--text-third);
+  font-size: 0.75rem;
+}
+
+.leader {
+  display: grid;
+  grid-template-columns: auto 1fr auto;
+  align-items: center;
+  gap: 1rem;
+  margin-bottom: 0.5rem;
+  padding: 1rem;
+  background-color: var(--bg-hover);
+  border-radius: 0.75rem;
+  box-shadow: inset 0 0 0 1px
+    color-mix(in srgb, var(--league-second) 22%, transparent);
+}
+
+.leader img {
+  width: 2.5rem;
+  height: 2.5rem;
+  object-fit: contain;
+}
+
+.leaderName {
+  font-size: 1.0625rem;
+  font-weight: 500;
+  line-height: 1.5rem;
+}
+
+.leaderMeta {
+  color: var(--text-second);
+  font-size: 0.8125rem;
+}
+
+.leaderGoals {
+  text-align: right;
+}
+
+.leaderGoals strong {
+  display: block;
+  color: var(--league-second);
+  font-size: 2.25rem;
+  font-weight: 500;
+  letter-spacing: -0.02em;
+  line-height: 1;
+}
+
+.leaderGoals span {
+  color: var(--text-third);
+  font-size: 0.75rem;
+}
+
+.rank {
   list-style-type: none;
 }
 
-.stats li,
-.stats h3 {
-  border-bottom: 0.05rem solid var(--border-color);
-  padding-bottom: 0.5rem;
+.rank li {
+  display: grid;
+  grid-template-columns: 1.25rem 1.25rem 1fr auto;
+  align-items: center;
+  gap: 0.625rem;
+  height: 2.25rem;
+  padding-inline: 0.25rem;
 }
 
-.stats h3 {
-  font-size: 1.25rem;
-  font-weight: 200;
-  color: var(--text-second);
+.rank li + li {
+  border-top: 1px solid var(--border-color);
 }
 
-.stats li {
-  margin-top: 0.5rem;
-  display: flex;
-  align-items: first baseline;
-  justify-content: space-between;
+.rank img {
+  width: 1.125rem;
+  height: 1.125rem;
+  object-fit: contain;
 }
 
-.stats li:last-child {
-  border-bottom: none;
+.place {
+  color: var(--text-third);
+  font-family: var(--font-mono);
+  font-size: 0.75rem;
 }
 
-.stats .player,
-.stats .team {
-  font-size: 1.25rem;
-  font-weight: 600;
+.name {
+  overflow: hidden;
+  white-space: nowrap;
+  text-overflow: ellipsis;
 }
 
-.stats .teamShort {
-  color: var(--text-second);
+.name em {
+  margin-left: 0.375rem;
+  color: var(--text-third);
+  font-size: 0.8125rem;
+  font-style: normal;
 }
 
-.stats .attribute {
-  color: var(--league-second);
-  font-weight: 600;
-  font-size: 1.25rem;
+.name abbr {
+  text-decoration: none;
 }
 
-.teamRankings {
+.goals {
+  min-width: 1.75rem;
+  font-weight: 500;
+  text-align: right;
+}
+
+.goals small {
+  display: inline-block;
+  min-width: 1rem;
+  margin-left: 0.5rem;
+  color: var(--text-third);
+  font-size: 0.75rem;
+  font-weight: 400;
+  text-align: right;
+}
+
+.pair {
   display: grid;
   grid-template-columns: 1fr 1fr;
-  gap: 1.25rem;
+  gap: 1rem;
+}
+
+.bars {
+  display: grid;
+  gap: 0.875rem;
+  list-style: none;
+}
+
+.bars li {
+  display: grid;
+  grid-template-columns: 1fr auto;
+  gap: 0.375rem 0.5rem;
+}
+
+.barName {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  min-width: 0;
+  overflow: hidden;
+  font-weight: 500;
+  white-space: nowrap;
+}
+
+.barName img {
+  width: 1rem;
+  height: 1rem;
+  object-fit: contain;
+}
+
+.barValue {
+  font-weight: 500;
+}
+
+.track {
+  grid-column: 1 / -1;
+  height: 0.25rem;
+  border-radius: 2px;
+  background-color: var(--bg-hover);
+}
+
+.fill {
+  display: block;
+  height: 100%;
+  border-radius: 2px;
+  background-color: var(--text-third);
+}
+
+.attack li:first-child .fill {
+  background-color: var(--league-second);
+}
+
+.defence li:first-child .fill {
+  background-color: var(--league-third);
 }
 
 @media (max-width: 40rem) {
-  .teamRankings {
+  .pair {
     grid-template-columns: 1fr;
   }
 }

@@ -42,43 +42,56 @@ export default function TeamRankings({
   );
 
   return (
-    <section aria-label="team rankings" className={styles.teamRankings}>
-      <div className={styles.stats}>
-        <h3>Most team goals</h3>
-        <ol>
+    <section aria-label="Team rankings" className={styles.pair}>
+      <div className={`${styles.card} ${styles.attack}`}>
+        <div className={styles.cardHead}>
+          <h3>Most goals scored</h3>
+        </div>
+        <ol className={styles.bars}>
           {attack.map((row) => (
             <li key={row.team.id}>
-              <span className={styles.team}>
+              <span className={styles.barName}>
+                {row.team.crest !== null && <img src={row.team.crest} alt="" />}
                 <ClubShortNames
                   full={row.team.shortName}
                   short={row.team.tla}
-                />{" "}
+                />
               </span>
-              <span className={styles.attribute}>{row.goalsFor}</span>
-              <progress
-                value={row.goalsFor / maxGoals}
-                aria-label="Goals scored realtive to the bst attack"
-              />
+              <span className={styles.barValue}>{row.goalsFor}</span>
+              <span className={styles.track}>
+                <span
+                  className={styles.fill}
+                  style={{ width: `${(row.goalsFor / maxGoals) * 100}%` }}
+                />
+              </span>
             </li>
           ))}
         </ol>
       </div>
-      <div className={styles.stats}>
-        <h3>Fewest goals conceded</h3>
-        <ol>
+
+      <div className={`${styles.card} ${styles.defence}`}>
+        <div className={styles.cardHead}>
+          <h3>Fewest conceded</h3>
+        </div>
+        <ol className={styles.bars}>
           {defence.map((row) => (
             <li key={row.team.id}>
-              <span className={styles.team}>
+              <span className={styles.barName}>
+                {row.team.crest !== null && <img src={row.team.crest} alt="" />}
                 <ClubShortNames
                   full={row.team.shortName}
                   short={row.team.tla}
-                />{" "}
+                />
               </span>
-              <span className={styles.attribute}>{row.goalsAgainst}</span>
-              <progress
-                value={leastConceded / Math.max(1, row.goalsAgainst)}
-                aria-label="Goals conceded realtive to the best defence"
-              />
+              <span className={styles.barValue}>{row.goalsAgainst}</span>
+              <span className={styles.track}>
+                <span
+                  className={styles.fill}
+                  style={{
+                    width: `${(leastConceded / Math.max(1, row.goalsAgainst)) * 100}%`,
+                  }}
+                />
+              </span>
             </li>
           ))}
         </ol>
