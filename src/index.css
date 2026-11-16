@@ -3,19 +3,46 @@
 * {
   margin: 0;
   padding: 0;
+  box-sizing: border-box;
+}
+
+html {
+  color-scheme: dark;
+  -webkit-tap-highlight-color: transparent;
 }
 
 body {
   background-color: var(--bg-main);
   color: var(--text-main);
   font-family:
+    "Geist",
     system-ui,
     -apple-system,
     "Segoe UI",
     sans-serif;
+  font-size: 0.875rem;
+  line-height: 1.25rem;
+  font-feature-settings: "tnum" 1;
+  -webkit-font-smoothing: antialiased;
 }
 
 button,
 select {
   font: inherit;
+  color: inherit;
+}
+
+img {
+  display: block;
+}
+
+::selection {
+  background-color: var(--league-second);
+  color: var(--league-on-accent);
+}
+
+:focus-visible {
+  outline: 2px solid var(--league-second);
+  outline-offset: 2px;
+  border-radius: 0.375rem;
 }

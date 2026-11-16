@@ -1,0 +1,48 @@
+.meta {
+  grid-area: meta;
+  color: var(--league-muted);
+  font-size: 0.9375rem;
+}
+
+.progress {
+  grid-area: progress;
+  align-self: end;
+  width: 26rem;
+  max-width: 100%;
+}
+
+.meta strong {
+  color: #fff;
+  font-weight: 500;
+}
+
+.rail {
+  display: grid;
+  align-items: end;
+  gap: 3px;
+}
+
+.rail i {
+  height: 1rem;
+  border-radius: 2px;
+  background-color: rgba(255, 255, 255, 0.16);
+}
+
+.rail .on {
+  background-color: rgba(255, 255, 255, 0.55);
+}
+
+.rail .now {
+  height: 1.5rem;
+  background-color: var(--league-highlight);
+}
+
+.railLabels {
+  display: flex;
+  justify-content: space-between;
+  margin-top: 0.5rem;
+  color: var(--league-muted);
+  font-family: var(--font-mono);
+  font-size: 0.75rem;
+  line-height: 1rem;
+}

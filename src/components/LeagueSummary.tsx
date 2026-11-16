@@ -1,6 +1,7 @@
 import { getStandings } from "../api/endpoints";
 import { useFetch } from "../hooks/useFetch";
 import { getSeasonProgress } from "../utils/standingsRankings";
+import { formatSeason } from "../utils/formatSeason";
 import styles from "./LeagueSummary.module.css";
 
 interface LeagueSummaryProps {
@@ -21,11 +22,37 @@ export default function LeagueSummary({
   const { clubs, total, played } = getSeasonProgress(data);
 
   return (
-    <div className={styles.test}>
-      <p>
-        Matchday {played} of {total} - {clubs} clubs
+    <>
+      <p className={styles.meta}>
+        <strong>Matchday {played}</strong> of {total} - {clubs} clubs -{" "}
+        {formatSeason(season)}
       </p>
-      <progress value={played} max={total} aria-label="Season progress" />
-    </div>
+      <div className={styles.progress}>
+        <div
+          className={styles.rail}
+          role="img"
+          aria-label={`Season progress: matchday ${played} of ${total}`}
+          style={{ gridTemplateColumns: `repeat(${total}, 1fr)` }}
+        >
+          {Array.from({ length: total }, (_, i) => (
+            <i
+              key={i}
+              className={
+                i < played - 1
+                  ? styles.on
+                  : i === played - 1
+                    ? styles.now
+                    : undefined
+              }
+            />
+          ))}
+        </div>
+
+        <div className={styles.railLabels}>
+          <span>MD 1</span>
+          <span>MD {total}</span>
+        </div>
+      </div>
+    </>
   );
 }

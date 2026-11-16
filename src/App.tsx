@@ -37,43 +37,55 @@ export default function App() {
 
   return (
     <main data-league={league.theme}>
-      <div className={styles.header}>
-        <h1>Football Stats</h1>
-        <div className={styles.filters}>
-          <div className={styles.filtersLeague}>
-            <label htmlFor="league-select">League</label>{" "}
-            <select
-              id="league-select"
-              value={league.code}
-              onChange={(event) => handleLeagueChange(event.target.value)}
-            >
+      <div className={styles.band}>
+        <div className={styles.stripe} aria-hidden="true">
+          {league.stripe.map((color) => (
+            <span key={color} style={{ backgroundColor: color }} />
+          ))}
+        </div>
+
+        <div className={styles.bandInner}>
+          <header className={styles.header}>
+            <p className={styles.brand}>Football Stats</p>
+
+            <nav className={styles.leagues} aria-label="League">
               {LEAGUES.map((item) => (
-                <option key={item.code} value={item.code}>
+                <button
+                  key={item.code}
+                  type="button"
+                  aria-current={item.code === league.code ? "true" : undefined}
+                  onClick={() => handleLeagueChange(item.code)}
+                >
                   {item.name}
-                </option>
+                </button>
               ))}
-            </select>
-          </div>
-          <div className={styles.filtersSeason}>
-            <label htmlFor="season-select">Season</label>{" "}
-            <select
-              id="season-select"
-              value={season}
-              onChange={(event) => handleSeasonChange(event.target.value)}
-            >
-              {SEASONS.map((item) => (
-                <option key={item} value={item}>
-                  {formatSeason(item)}
-                </option>
-              ))}
-            </select>
+            </nav>
+
+            <label className={styles.season}>
+              <span>Season</span>
+              <select
+                id="season-select"
+                value={season}
+                onChange={(event) => handleSeasonChange(event.target.value)}
+              >
+                {SEASONS.map((item) => (
+                  <option key={item} value={item}>
+                    {formatSeason(item)}
+                  </option>
+                ))}
+              </select>
+            </label>
+          </header>
+
+          <div className={styles.title}>
+            <div className={styles.emblem}>
+              <img src={league.emblem} alt="" />
+            </div>
+            <h1>{league.name}</h1>
+            <LeagueSummary leagueCode={leagueCode} season={season} />
           </div>
         </div>
       </div>
-
-      <h2 className={styles.leagueName}>{league.name}</h2>
-      <LeagueSummary leagueCode={leagueCode} season={season} />
-
       <div className={styles.layout}>
         <section className={styles.leagueTableSection}>
           <Leaguetable

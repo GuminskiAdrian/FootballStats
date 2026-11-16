@@ -1,40 +1,61 @@
 :root {
-  --bg-main: #0f1117;
-  --bg-card: #181b23;
-  --bg-hover: #222734;
-  --text-main: #f3f4f6;
-  --text-second: #9ca3af;
-  --border-color: #2a2f3d;
+  --bg-main: #111214;
+  --bg-card: #17181b;
+  --bg-hover: #202125;
+  --text-main: #ededed;
+  --text-second: #a1a1a6;
+  --text-third: #85858b;
+  --border-color: rgba(237, 237, 237, 0.08);
 
-  --form-w: #10b981;
-  --form-d: #6b7280;
-  --form-l: #ef4444;
-  --page-gutter: 4rem;
+  --form-w: #4cc38a;
+  --form-d: #6e6e75;
+  --form-l: #e5484d;
+  --page-gutter: 2rem;
+
+  --league-muted: rgba(255, 255, 255, 0.66);
+  --ease-out: cubic-bezier(0.23, 1, 0.32, 1);
+  --font-mono: "Geist Mono", ui-monospace, monospace;
 }
 
 [data-league="premierLeague"] {
-  --league-main: #2e1238;
+  --league-main: #37003c;
+  --league-highlight: #00ff85;
   --league-second: #00ff85;
+  --league-third: #04f5ff;
+  --league-on-accent: #1c0020;
 }
 
 [data-league="laLiga"] {
-  --league-main: #1e1015;
-  --league-second: #ff3355;
+  --league-main: #00001b;
+  --league-highlight: #ff4b44;
+  --league-second: #ff4b44;
+  --league-third: #00d4d6;
+  --league-on-accent: #ffffff;
 }
 
 [data-league="bundesliga"] {
-  --league-main: #210d0e;
-  --league-second: #ff4d5e;
+  --league-main: #d10214;
+  --league-highlight: #ffffff;
+  --league-second: #ff4553;
+  --league-third: #f2f2f2;
+  --league-on-accent: #ffffff;
+  --league-muted: rgba(255, 255, 255, 0.78);
 }
 
 [data-league="ligue1"] {
   --league-main: #091c3e;
+  --league-highlight: #dae91e;
   --league-second: #dae91e;
+  --league-third: #9fb6e6;
+  --league-on-accent: #091c3e;
 }
 
 [data-league="serieA"] {
-  --league-main: #020b1a;
-  --league-second: #00f0ff;
+  --league-main: #1a1659;
+  --league-highlight: #0578ff;
+  --league-second: #3b93ff;
+  --league-third: #19c263;
+  --league-on-accent: #ffffff;
 }
 
 @media (max-width: 40rem) {
